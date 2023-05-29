@@ -42,6 +42,11 @@ const app = express();
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
+// this allows us to use page layout for the views 
+// so we don't have to repeat the headers and footers on every page ...
+// the layout is in views/layout.ejs
+app.use(layouts);
+
 // Here we process the requests so they are easy to handle
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -70,9 +75,9 @@ app.get("/", (req, res, next) => {
     res.render("/");
   });
   
-app.get("/about", (req, res, next) => {
+/*app.get("/about", (req, res, next) => {
     res.render("about");
-  });
+  }); */
 
 /* ************************
   Loading (or reloading) the data into a collection
@@ -105,7 +110,7 @@ app.use(function(err, req, res, next) {
 //  Starting up the server!
 // *********************************************************** //
 //Here we set the port to use between 1024 and 65535  (2^16-1)
-const port = process.env.PORT || "5000";
+const port = process.env.PORT || "4000";
 app.set("port", port);
 
 // and now we startup the server listening on that port
