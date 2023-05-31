@@ -16,12 +16,25 @@ const layouts = require("express-ejs-layouts");
 const axios = require("axios")
 
 // *********************************************************** //
+//  Loading models
+// *********************************************************** //
+
+const Client = require("./models/Client")
+
+// *********************************************************** //
+//  Loading JSON datasets
+// *********************************************************** //
+
+const clients = require("./public/data/Portal_RMV_Queries.json")
+
+// *********************************************************** //
 //  Connecting to the database
 // *********************************************************** //
 
 const mongoose = require( 'mongoose' );
 //const mongodb_URI = process.env.mongodb_URI
-const mongodb_URI = 'mongodb+srv://silvam:Hurdler!20967@rmvdb.vcfocdw.mongodb.net/?retryWrites=true&w=majority'
+//const mongodb_URI = 'mongodb+srv://silvam:Hurdler!20967@rmvdb.vcfocdw.mongodb.net/?retryWrites=true&w=majority'
+const mongodb_URI = 'mongodb+srv://silvam:Hurdler!20967@rmvdb.vcfocdw.mongodb.net/RMV_Services?retryWrites=true&w=majority'
 mongoose.connect( mongodb_URI, { useNewUrlParser: true, useUnifiedTopology: true } );
 // fix deprecation warnings
 mongoose.set('useFindAndModify', false); 
@@ -79,14 +92,44 @@ app.get("/about", (req, res, next) => {
     res.render("about");
   });
 
+/*app.get("/addClient", (req, res, next) => {
+    res.render("addClient");
+})*/
+
 /* ************************
   Loading (or reloading) the data into a collection
    ************************ */
-// this route loads in the courses into the Course collection
-// or updates the courses if it is not a new collection
+// this route loads in the clients into the Client collection
+// or updates the clients if it is not a new collection
 
 
+app.get('/upsertDB',
+  async (req,res,next) => {
+    for (client of clients){
+      const {first_name,last_name,street_address,city,state,zip_code,
+        type_of_service,amnt_paid,vehicle_cost,state_tax_cost,office_service_cost,
+        vehicle_model,date_documents_received,date_of_service_completion,
+        payment_type,service_status,servicer,missing_docs,payment_received}=client;
 
+      await Client.findOneAndUpdate({first_name,last_name,street_address,city,state,zip_code,
+        type_of_service,amnt_paid,vehicle_cost,state_tax_cost,office_service_cost,
+        vehicle_model,date_documents_received,date_of_service_completion,
+        payment_type,service_status,servicer,missing_docs,payment_received},client,{upsert:true})
+    }
+    const num = await Client.find({}).count();
+    res.send("data uploaded: "+num)
+  }
+)
+
+
+app.get("/clients/allClients",
+
+    async (req, res, next) => {
+        const clients = await Client.find({})
+        res.locals.clients = clients
+        res.render("clientlist")
+    } 
+)
 
 // here we catch 404 errors and forward to error handler
 app.use(function(req, res, next) {

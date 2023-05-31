@@ -1,0 +1,55 @@
+<body>
+    <h1>Search Results</h1>
+    <hr>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Type of Service</th>
+                <th>Vehicle Model</th>
+                <th>Vehicle Cost</th>
+                <th>Payment Type</th>
+                <th>Service Status</th>
+                <th>Missing Documents</th>
+            </tr>
+        </thead>
+        <% if (clients==null || clients.length==0) {%>
+            
+            No clients found
+        
+        <% } else  if (clients.length>0) { %>
+            <tbody>
+
+                <% for (client of clients) {
+                    %>
+                    <tr class="mb-2">
+                        <td>
+                            <%= client['first_name'] %>
+                            <%= client['last_name'] %>
+                        </td>
+                        <td>
+                            <%= client['type_of_service'] %>
+                        </td>
+                        <td>
+                            <%= client['vehicle_model'] %>
+                        </td>
+                        <td>
+                            <%= client['vehicle_cost'] %>
+                        </td>
+                        <td>
+                            <%= client['payment_type'] %>
+                        </td>
+                        <td>
+                            <%= client['service_status'] %>
+                        </td>
+                        <td>
+                            <%= client['missing_docs'] %>
+                        </td>
+
+                    </tr>
+                    <% } %>
+                <% } %>
+            </tbody>
+    </table>
+</body>
