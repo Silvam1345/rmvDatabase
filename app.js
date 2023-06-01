@@ -25,7 +25,7 @@ const Client = require("./models/Client")
 //  Loading JSON datasets
 // *********************************************************** //
 
-const clients = require("./public/data/Portal_RMV_Queries.json")
+const clients = require("./public/data/portalrmvclients.json")
 
 // *********************************************************** //
 //  Connecting to the database
@@ -35,6 +35,7 @@ const mongoose = require( 'mongoose' );
 //const mongodb_URI = process.env.mongodb_URI
 //const mongodb_URI = 'mongodb+srv://silvam:Hurdler!20967@rmvdb.vcfocdw.mongodb.net/?retryWrites=true&w=majority'
 const mongodb_URI = 'mongodb+srv://silvam:Hurdler!20967@rmvdb.vcfocdw.mongodb.net/RMV_Services?retryWrites=true&w=majority'
+
 mongoose.connect( mongodb_URI, { useNewUrlParser: true, useUnifiedTopology: true } );
 // fix deprecation warnings
 mongoose.set('useFindAndModify', false); 
@@ -102,7 +103,7 @@ app.get("/about", (req, res, next) => {
 // this route loads in the clients into the Client collection
 // or updates the clients if it is not a new collection
 
-
+/*
 app.get('/upsertDB',
   async (req,res,next) => {
     for (client of clients){
@@ -120,6 +121,7 @@ app.get('/upsertDB',
     res.send("data uploaded: "+num)
   }
 )
+*/
 
 
 app.get("/clients/allClients",
@@ -131,6 +133,16 @@ app.get("/clients/allClients",
     } 
 )
 
+app.post("/clients/byName",
+
+    async (req, res, next) => {
+        const f_name = req.body.first_name;
+        //const l_name = req.body.last_name;
+        const clients = await Client.find({first_name: f_name})
+        res.locals.clients = clients
+        res.render("clientlist")
+    }
+)
 // here we catch 404 errors and forward to error handler
 app.use(function(req, res, next) {
     next(createError(404));

@@ -17,7 +17,8 @@
     "express-ejs-layouts": "^2.5.1",
     "express-session": "^1.16.2",
     "http-errors": "~1.6.3",
+    "mongodb": "^5.5.0",
     "mongoose": "^5.9.21",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.22"
   }
 }
