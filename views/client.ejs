@@ -1,0 +1,58 @@
+<style>
+    body{
+        font-family:'Courier New', Courier, monospace;
+    }
+  </style>
+<body>
+    <div class="bg-light m-5 p-2 border border-secondary border-2 bg-secondary">
+        <div class="mb-1">
+            <b>Client Information</b>
+            <br>
+            Name: <%= client['first_name'] %>
+            <%= client['last_name'] %>
+        </div>
+        <div class="mb-1">
+            Address:
+            <br>
+            <%= client['street_address']%>
+            <br>
+            <%= client['city']%>,
+            <%= client['state']%>,
+            <%= client['zip_code']%>
+        </div>
+        <div class="mb-1">
+            <b>Vehicle Information</b>
+            <br>
+            Vehicle Model: <%= client['vehicle_model']%>
+            <br>
+            Vehicle Cost: $<%= client['vehicle_cost']%>
+            <br>
+            State Tax Cost: $<%= client['state_tax_cost']%>
+            <br>
+            Amount client currently paid: $<%= client['amnt_paid']%>
+        </div>
+
+        <div class="mb-1">
+            <b>Service Information</b>
+            <br>
+            Payment Type: <%= client['payment_type']%>
+            <br>
+            Servicer: <%= client['servicer']%>
+            <br>
+            Status of Service: <%= client['service_status']%>
+            <br>
+            Documents First Received: <%= client['date_documents_received']%>
+            <br>
+            Processing Issues: <%= client['missing_docs']%>
+            <br>
+            Date of Service Completion: <%= client['date_of_service_completion']%>
+        </div>
+    </div>
+</body>
+<hr>
+
+<pre>
+    <%= JSON.stringify(client,null,5) %>
+</pre>
+-->
+

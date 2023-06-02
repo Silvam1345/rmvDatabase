@@ -143,6 +143,17 @@ app.post("/clients/byName",
         res.render("clientlist")
     }
 )
+
+app.get('/clients/show/:clientId',
+  // show all info about a course given its clientid
+  async (req,res,next) => {
+    const {clientId} = req.params;
+    const client = await Client.findOne({_id:clientId})
+    res.locals.client = client
+    res.render('client')
+  }
+)
+
 // here we catch 404 errors and forward to error handler
 app.use(function(req, res, next) {
     next(createError(404));
