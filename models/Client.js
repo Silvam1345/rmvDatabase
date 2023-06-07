@@ -22,7 +22,7 @@ var clientSchema = Schema( {
     service_status: String,
     servicer: String,
     missing_docs: String,
-    payment_received: String,
+    payment_received: Number,
 } );
 
 module.exports = mongoose.model( 'Client', clientSchema );

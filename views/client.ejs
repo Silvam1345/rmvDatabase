@@ -5,13 +5,14 @@
   </style>
 <body>
     <div class="bg-light m-5 p-2 border border-secondary border-2 bg-secondary">
-        <div class="mb-1">
-            <b>Client Information</b>
+        <div class="mb-1 p-2">
+            <b>Client Information </b>
+            <br>
             <br>
             Name: <%= client['first_name'] %>
             <%= client['last_name'] %>
         </div>
-        <div class="mb-1">
+        <div class="mb-1 p-2">
             Address:
             <br>
             <%= client['street_address']%>
@@ -20,8 +21,9 @@
             <%= client['state']%>,
             <%= client['zip_code']%>
         </div>
-        <div class="mb-1">
+        <div class="mb-1 p-2">
             <b>Vehicle Information</b>
+            <br>
             <br>
             Vehicle Model: <%= client['vehicle_model']%>
             <br>
@@ -32,8 +34,9 @@
             Amount client currently paid: $<%= client['amnt_paid']%>
         </div>
 
-        <div class="mb-1">
+        <div class="mb-1 p-2">
             <b>Service Information</b>
+            <br>
             <br>
             Payment Type: <%= client['payment_type']%>
             <br>
@@ -46,6 +49,12 @@
             Processing Issues: <%= client['missing_docs']%>
             <br>
             Date of Service Completion: <%= client['date_of_service_completion']%>
+        </div>
+        <div class="mb-1 p-3">
+            <b>Edit</b>
+            <br>
+            <br>
+            <b>Remove</b>
         </div>
     </div>
 </body>

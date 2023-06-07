@@ -15,6 +15,7 @@ const debug = require("debug")("personalapp:server");
 const layouts = require("express-ejs-layouts");
 const axios = require("axios")
 
+
 // *********************************************************** //
 //  Loading models
 // *********************************************************** //
@@ -93,9 +94,9 @@ app.get("/about", (req, res, next) => {
     res.render("about");
   });
 
-/*app.get("/addClient", (req, res, next) => {
-    res.render("addClient");
-})*/
+app.get("/newClient", (req, res, next) => {
+    res.render("newClient");
+})
 
 /* ************************
   Loading (or reloading) the data into a collection
@@ -154,6 +155,30 @@ app.get('/clients/show/:clientId',
   }
 )
 
+app.post("/newClient/add", 
+    async (req, res, next) => {
+    try {
+        const{first_name,last_name,street_address,city,state,zip_code,
+            type_of_service,amnt_paid,vehicle_cost,office_service_cost,
+            vehicle_model,date_documents_received,date_of_service_completion,
+            payment_type,service_status,servicer,missing_docs,payment_received} = req.body;
+        
+        const state_tax_cost = (req.body.vehicle_cost)*.0625
+        let data = {first_name,last_name,street_address,city,state,zip_code,
+            type_of_service,amnt_paid,vehicle_cost,state_tax_cost,office_service_cost,
+            vehicle_model,date_documents_received,date_of_service_completion,
+            payment_type,service_status,servicer,missing_docs,payment_received}
+        let client_info = new Client(data)
+        await client_info.save()
+        res.redirect('/newClient')
+        console.log("Client has been added successfully")
+    } catch (e) {
+        //console.log("Error has occurred")
+        next(e);
+    }
+}
+)
+
 // here we catch 404 errors and forward to error handler
 app.use(function(req, res, next) {
     next(createError(404));
@@ -181,7 +206,6 @@ app.set("port", port);
 
 // and now we startup the server listening on that port
 const http = require("http");
-//const Favorites = require("./models/Favorites");
 const server = http.createServer(app);
 
 server.listen(port);

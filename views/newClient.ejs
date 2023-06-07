@@ -1,0 +1,58 @@
+<style>
+    body{
+        font-family:'Courier New', Courier, monospace;
+    }
+  </style>
+  <body>
+    <h1 style="text-align: center; margin: 1em;">Add a Client</h1>
+    <hr>
+    <form method="post" action="/newClient/add">
+        <b>Client Information</b>
+        <br>
+        First Name: <input type="text" name="first_name"><br>
+        Last Name: <input type="text" name="last_name"><br>
+        Street Address: <input type="text" name="street_address"><br>
+        City: <input type="text" name="city"><br>
+        State: <input type="text" name="state" placeholder="ex. MA"><br>
+        Zip Code: <input type="text" name="zip_code"><br>
+        <br>
+        <b>Vehicle Information</b>
+        <br>
+        Vehicle Model: <input type="text" name="vehicle_model" 
+        placeholder="ex. 2009 Honda Civic"><br>
+        Vehicle Cost($): <input type="text" name="vehicle_cost"><br>
+        Amount Client Paid<br>
+        (Includes Office Service Cost): <input 
+        type="text" name="amnt_paid"><br>
+        <br>
+        <b>Service Information</b>
+        <br>
+        Type of Service:
+        <select name="type_of_service">
+            <option value="Register Vehicle">Register Vehicle</option>
+            <option value="Renew Registration">Renew Registration</option>
+        </select><br>
+        Office Service Cost($): <input type="text" name="office_service_cost"><br>
+        Payment Type: 
+        <select name="payment_type">
+          <option value="Standard">Standard</option>
+          <option value="Gift">Gift</option>
+      </select><br>
+        Date documents were first received: <input type="text" 
+        name="date_documents_received" placeholder="e.g. 6/05/2023"><br>
+        Date of Completion<br>
+        (If not completed, put "None"): <input 
+        type="text" name="date_of_service_completion"><br>
+        Service Status:
+        <select name="service_status">
+          <option value="Pending Approval">Pending Approval</option>
+          <option value="On Hold">On Hold</option>
+          <option value="Completed"> Completed</option>
+        </select><br>
+        Servicer: <input type="text" name="servicer"><br>
+        Issues/Missing Documents: <input type="text" name="missing_docs"><br>
+        Payment Received ($):  <input type="text" name="payment_received"><br>
+        <br>
+        <input type="submit" value="Save Client"><br>
+    </form>
+  </body>
