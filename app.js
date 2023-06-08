@@ -157,27 +157,41 @@ app.get('/clients/show/:clientId',
 
 app.post("/newClient/add", 
     async (req, res, next) => {
-    try {
-        const{first_name,last_name,street_address,city,state,zip_code,
-            type_of_service,amnt_paid,vehicle_cost,office_service_cost,
-            vehicle_model,date_documents_received,date_of_service_completion,
-            payment_type,service_status,servicer,missing_docs,payment_received} = req.body;
-        
-        const state_tax_cost = (req.body.vehicle_cost)*.0625
-        let data = {first_name,last_name,street_address,city,state,zip_code,
-            type_of_service,amnt_paid,vehicle_cost,state_tax_cost,office_service_cost,
-            vehicle_model,date_documents_received,date_of_service_completion,
-            payment_type,service_status,servicer,missing_docs,payment_received}
-        let client_info = new Client(data)
-        await client_info.save()
-        res.redirect('/newClient')
-        console.log("Client has been added successfully")
-    } catch (e) {
-        //console.log("Error has occurred")
-        next(e);
+        try {
+            const{first_name,last_name,street_address,city,state,zip_code,
+                type_of_service,amnt_paid,vehicle_cost,office_service_cost,
+                vehicle_model,date_documents_received,date_of_service_completion,
+                payment_type,service_status,servicer,missing_docs,payment_received} = req.body;
+            
+            const state_tax_cost = (req.body.vehicle_cost)*.0625
+            let data = {first_name,last_name,street_address,city,state,zip_code,
+                type_of_service,amnt_paid,vehicle_cost,state_tax_cost,office_service_cost,
+                vehicle_model,date_documents_received,date_of_service_completion,
+                payment_type,service_status,servicer,missing_docs,payment_received}
+            let client_info = new Client(data)
+            await client_info.save()
+            res.redirect('/newClient')
+            console.log("Client has been added successfully!")
+        } catch (e) {
+            //console.log("Error has occurred")
+            next(e);
+        }
     }
-}
 )
+/*
+app.get("/client/delete/:clientId",
+    async (req, res, next) => {
+        try {
+            const clientId = req.params.clientId;
+            await Client.deleteOne({_id:clientId})
+            res.redirect("/")
+
+        } catch (e) {
+            next(e);
+        }
+    }
+)
+*/
 
 // here we catch 404 errors and forward to error handler
 app.use(function(req, res, next) {

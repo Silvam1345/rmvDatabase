@@ -3,6 +3,11 @@
         font-family:'Courier New', Courier, monospace;
     }
   </style>
+  <script type = "text/javascript">  
+    function notifyUser(){
+      alert("Client has been added successfully!");
+    }
+  </script> 
   <body>
     <h1 style="text-align: center; margin: 1em;">Add a Client</h1>
     <hr>
@@ -53,6 +58,6 @@
         Issues/Missing Documents: <input type="text" name="missing_docs"><br>
         Payment Received ($):  <input type="text" name="payment_received"><br>
         <br>
-        <input type="submit" value="Save Client"><br>
+        <input type="submit" value="Save Client" onclick="notifyUser()"><br>
     </form>
   </body>
