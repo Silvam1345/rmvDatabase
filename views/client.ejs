@@ -3,6 +3,7 @@
         font-family:'Courier New', Courier, monospace;
     }
   </style>
+
 <body>
     <div class="bg-light m-5 p-2 border border-secondary border-2 bg-secondary">
         <div class="mb-1 p-2">
@@ -55,7 +56,7 @@
             <br>
             <br>
             <a href="/client/delete/<%= client['_id']%>" 
-                onclick="confirm('Are you sure you want to delete this client? This action cannot be undone.')">(Remove)</a>
+                onclick="return confirm('Are you sure you want to delete this client? This cannot be undone.');">(Delete)</a>
         </div>
     </div>
 </body>

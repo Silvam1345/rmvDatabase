@@ -178,7 +178,7 @@ app.post("/newClient/add",
         }
     }
 )
-/*
+
 app.get("/client/delete/:clientId",
     async (req, res, next) => {
         try {
@@ -191,7 +191,7 @@ app.get("/client/delete/:clientId",
         }
     }
 )
-*/
+
 
 // here we catch 404 errors and forward to error handler
 app.use(function(req, res, next) {
