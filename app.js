@@ -98,6 +98,7 @@ app.get("/newClient", (req, res, next) => {
     res.render("newClient");
 })
 
+
 /* ************************
   Loading (or reloading) the data into a collection
    ************************ */
@@ -178,6 +179,36 @@ app.post("/newClient/add",
         }
     }
 )
+
+app.get("/updateClient/show/:clientId", 
+async (req, res, next) => {
+    const {clientId} = req.params;
+    const client = await Client.findOne({_id:clientId})
+    res.locals.client = client
+    res.render("updateClient");
+})
+
+/*
+app.get("/updateClient/update/:clientId",
+    async (req,res,next) => {
+        try {
+            const clientId = req.params.clientId;
+            const {first_name,last_name,street_address,city,state,zip_code,
+                type_of_service,amnt_paid,vehicle_cost,state_tax_cost,office_service_cost,
+                vehicle_model,date_documents_received,date_of_service_completion,
+                payment_type,service_status,servicer,missing_docs,payment_received} = req.body;
+            let updatedClient = {first_name,last_name,street_address,city,state,zip_code,
+                type_of_service,amnt_paid,vehicle_cost,state_tax_cost,office_service_cost,
+                vehicle_model,date_documents_received,date_of_service_completion,
+                payment_type,service_status,servicer,missing_docs,payment_received}
+            await Client.findByIdAndUpdate(clientId,{updatedClient} )
+            res.redirect("/clients/show/:clientId")
+        } catch(e) {
+            next(e);
+        }
+    }
+)
+*/
 
 app.get("/client/delete/:clientId",
     async (req, res, next) => {
