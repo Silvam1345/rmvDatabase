@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const ObjectId = Schema.Types.ObjectId;
 
 var clientSchema = Schema( {
+    clientId: ObjectId,
     first_name: String,
     last_name: String,
     street_address: String,
