@@ -2,6 +2,7 @@
     body{
         font-family:'Courier New', Courier, monospace;
     }
+    
   </style>
 
 <body>
@@ -54,11 +55,9 @@
             Date of Service Completion: <%= client['date_of_service_completion']%>
         </div>
         <div class="mb-1 p-3">
-            <a href="/updateClient/show/<%= client['_id'] %>">(Update)</a>
-            <br>
-            <br>
-            <a href="/client/delete/<%= client['_id']%>" 
-                onclick="return confirm('Are you sure you want to delete this client? This action cannot be undone.');">(Delete)</a>
+            <a class="btn btn-primary" href="/updateClient/show/<%= client['_id'] %>">Update</a>
+            <a class="btn btn-danger" href="/client/delete/<%= client['_id']%>" 
+                onclick="return confirm('Are you sure you want to delete this client? This action cannot be undone.');">Delete</a>
         </div>
     </div>
 </body>

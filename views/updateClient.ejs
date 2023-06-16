@@ -77,9 +77,9 @@
       Payment Received ($):  <input type="text" name="payment_received" value="<%= client['payment_received']%>"><br>
       <br>
       <br>
-        <a class="button" href="/clients/show/<%= client['_id']%>">Cancel</a>
+        <a class="btn btn-secondary" href="/clients/show/<%= client['_id']%>">Cancel</a>
       <br>
       <br>
-      <input type="submit" value="Save Changes" onclick="updateConfirm()"><br>
+      <input class="btn btn-primary" type="submit" value="Save Changes" onclick="updateConfirm()"><br>
   </form>
   </body>

@@ -11,6 +11,9 @@
   <body>
     <h1 style="text-align: center; margin: 1em;">Add a Client</h1>
     <hr>
+    <button class="btn btn-secondary" onclick="history.back()">Back</button>
+    <br>
+    <br>
     <form method="post" action="/newClient/add">
         <b>Client Information</b>
         <br>
@@ -59,6 +62,6 @@
         Issues/Missing Documents: <input type="text" name="missing_docs"><br>
         Payment Received ($):  <input type="text" name="payment_received"><br>
         <br>
-        <input type="submit" value="Save Client" onclick="notifyUser()"><br>
+        <input class="btn btn-primary" type="submit" value="Save Client" onclick="notifyUser()"><br>
     </form>
   </body>
