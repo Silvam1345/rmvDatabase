@@ -2,16 +2,6 @@
     body{
         font-family:'Courier New', Courier, monospace;
     }
-    .button {
-      background-color: #9a9a9a;
-      border: none;
-      color: white;
-      padding: 5px 32px;
-      text-decoration: none;
-      display: inline-block;
-      margin: 4px 2px;
-      cursor: pointer;
-    }
   </style>
   <body>
     <script type = "text/javascript">  
@@ -63,7 +53,7 @@
       Date documents were first received: <input type="text" 
       name="date_documents_received" value="<%= client['date_documents_received']%>"><br>
       Date of Completion<br>
-      (If not completed, put "None"): <input 
+      (If not completed, leave blank): <input 
       type="text" name="date_of_service_completion" value="<%= client['date_of_service_completion']%>"><br>
       Service Status:
       <select name="service_status">

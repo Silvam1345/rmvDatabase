@@ -18,18 +18,20 @@
     </p>
     <br>
     <form method="post" action="/clients/byName" style="margin-bottom: 20px;">
-        Find Clients by <b>First Name:</b>
+        Find Clients by <b>Name:</b>
         <br>
 
             <input type="text" name="first_name"
                 placeholder="First Name">
+            <input type="text" name="last_name" 
+                placeholder="Last Name">
 
-        <input class="btn btn-secondary" type="submit" value="Search">
+        <input class="btn btn-primary" type="submit" value="Search">
 
     </form>
     <br>
     <div style="text-align: center; margin: 1em; padding: 10px;">
-        <a class="btn btn-primary" href="/clients/allClients">View Database</a>
+        <a class="btn btn-primary" href="/clients/allClients">View All Clients</a>
         <a class="btn btn-success" href="/newClient">Add a Client</a>
     </div>
 

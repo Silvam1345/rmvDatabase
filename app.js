@@ -135,16 +135,36 @@ app.get("/clients/allClients",
     } 
 )
 
-app.post("/clients/byName",
 
+app.post("/clients/byName",
     async (req, res, next) => {
         const f_name = req.body.first_name;
-        //const l_name = req.body.last_name;
-        const clients = await Client.find({first_name: f_name})
+        const l_name = req.body.last_name;
+        let clients = await Client.find({})
+        if (f_name == "" || l_name == "") {
+            clients = await Client.find(
+                { $or: [ { first_name: { $eq: f_name}}, { last_name: { $eq: l_name}}]})
+        } else {
+            clients = await Client.find({first_name:f_name,last_name:l_name})
+        }
         res.locals.clients = clients
         res.render("clientlist")
     }
 )
+
+/*
+app.post("/clients/byName",
+
+    async (req, res, next) => {
+        const f_name = req.body.first_name;
+        const l_name = req.body.last_name;
+        const clients = await Client.find(
+            { $or: [ { first_name: { $eq: f_name}}, { last_name: { $eq: l_name}}]})
+        res.locals.clients = clients
+        res.render("clientlist")
+    }
+)
+*/
 
 app.get('/clients/show/:clientId',
   // show all info about a course given its clientid
@@ -204,7 +224,7 @@ app.post("/updateClient/update/:clientId",
                 type_of_service,amnt_paid,vehicle_cost,state_tax_cost,office_service_cost,
                 vehicle_model,date_documents_received,date_of_service_completion,
                 payment_type,service_status,servicer,missing_docs,payment_received})
-                
+
             res.redirect("/clients/show/"+clientId)
         } catch(e) {
             next(e);
