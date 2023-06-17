@@ -33,9 +33,9 @@ const clients = require("./public/data/portalrmvclients.json")
 // *********************************************************** //
 
 const mongoose = require( 'mongoose' );
-//const mongodb_URI = process.env.mongodb_URI
-//const mongodb_URI = 'mongodb+srv://silvam:Hurdler!20967@rmvdb.vcfocdw.mongodb.net/?retryWrites=true&w=majority'
-const mongodb_URI = 'mongodb+srv://silvam:Hurdler!20967@rmvdb.vcfocdw.mongodb.net/RMV_Services?retryWrites=true&w=majority'
+const mongodb_URI = process.env.mongodb_URI
+
+//const mongodb_URI = 'mongodb+srv://silvam:Hurdler!20967@rmvdb.vcfocdw.mongodb.net/RMV_Services?retryWrites=true&w=majority'
 
 mongoose.connect( mongodb_URI, { useNewUrlParser: true, useUnifiedTopology: true } );
 // fix deprecation warnings
