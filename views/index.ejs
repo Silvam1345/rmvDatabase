@@ -18,7 +18,7 @@
     </p>
     <br>
     <form method="post" action="/clients/byName" style="margin-bottom: 20px;">
-        Find Clients by <b>Name:</b>
+        Search by <b>Name:</b>
         <br>
 
             <input type="text" name="first_name"
@@ -30,6 +30,13 @@
 
     </form>
     <br>
+    <form method="post" action="/clients/byServicer" style="margin-bottom: 20px;">
+        Search by <b>Servicer:</b>
+        <br>
+        <input type="text" name="servicer" placeholder="e.g. Mateus Silva">
+        <input class="btn btn-primary" type="submit" value="Search">
+        
+    </form>
     <div style="text-align: center; margin: 1em; padding: 10px;">
         <a class="btn btn-primary" href="/clients/allClients">View All Clients</a>
         <a class="btn btn-success" href="/newClient">Add a Client</a>

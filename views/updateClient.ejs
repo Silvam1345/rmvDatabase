@@ -13,58 +13,61 @@
     <hr>
     <form method="post" action="/updateClient/update/<%= client['_id']%>">
       <b>Client Information</b>
-      <br>
-      First Name: <input type="text" name="first_name" value="<%= client['first_name']%>"><br>
-      Last Name: <input type="text" name="last_name" value="<%= client['last_name']%>"><br>
-      Street Address: <input type="text" name="street_address" value="<%= client['street_address']%>"><br>
-      City: <input type="text" name="city" value="<%= client['city']%>"> <br>
-      State: <input type="text" name="state" value="<%= client['state']%>"><br>
-      Zip Code: <input type="text" name="zip_code" value="<%= client['zip_code']%>"><br>
+      <br><br>
+      First Name: <input type="text" name="first_name" value="<%= client['first_name']%>"><br><br>
+      Last Name: <input type="text" name="last_name" value="<%= client['last_name']%>"><br><br>
+      Street Address: <input type="text" name="street_address" value="<%= client['street_address']%>"><br><br>
+      City: <input type="text" name="city" value="<%= client['city']%>"> <br><br>
+      State: <input type="text" name="state" value="<%= client['state']%>"><br><br>
+      Zip Code: <input type="text" name="zip_code" value="<%= client['zip_code']%>"><br><br>
       <br>
       <b>Vehicle Information</b>
-      <br>
+      <br><br>
       Vehicle Model: <input type="text" name="vehicle_model" 
-      value="<%= client['vehicle_model']%>"><br>
+      value="<%= client['vehicle_model']%>"><br><br>
       Vehicle Cost($): <input type="text" name="vehicle_cost" 
-      value="<%= client['vehicle_cost']%>"><br>
+      value="<%= client['vehicle_cost']%>"><br><br>
       State Tax Cost($): <input type="text" name="state_tax_cost" 
-      value="<%= client['state_tax_cost']%>"><br>
+      value="<%= client['state_tax_cost']%>"><br><br>
       Amount Client Paid($)<br>
       (Including Office Service Cost): <input 
       type="text" name="amnt_paid" value="<%= client['amnt_paid']%>"><br>
-      <br>
+      <br><br>
       <b>Service Information</b>
-      <br>
+      <br><br>
       Type of Service:
       <select name="type_of_service">
           <option value="" selected disabled hidden>Choose one</option>
           <option value="Register Vehicle">Register Vehicle</option>
           <option value="Renew Registration">Renew Registration</option>
           <option value="Cancel Registration">Cancel Registration</option>
-      </select><br>
+      </select><br><br>
       Office Service Cost($): <input type="text" name="office_service_cost" 
-      value="<%= client['office_service_cost']%>"><br>
+      value="<%= client['office_service_cost']%>"><br><br>
       Payment Type: 
       <select name="payment_type">
         <option value="" selected disabled hidden>Choose one</option>
         <option value="Standard">Standard</option>
         <option value="Gift">Gift</option>
-    </select><br>
+    </select><br><br>
       Date documents were first received: <input type="text" 
-      name="date_documents_received" value="<%= client['date_documents_received']%>"><br>
+      name="date_documents_received" value="<%= client['date_documents_received']%>"><br><br>
       Date of Completion<br>
       (If not completed, leave blank): <input 
-      type="text" name="date_of_service_completion" value="<%= client['date_of_service_completion']%>"><br>
+      type="text" name="date_of_service_completion" 
+      value="<%= client['date_of_service_completion']%>"><br><br>
       Service Status:
       <select name="service_status">
         <option value="" selected disabled hidden>Choose one</option>
         <option value="Pending Approval">Pending Approval</option>
         <option value="On Hold">On Hold</option>
         <option value="Completed"> Completed</option>
-      </select><br>
-      Servicer: <input type="text" name="servicer" value="<%= client['servicer']%>"><br>
-      Issues/Missing Documents: <input type="text" name="missing_docs" value="<%= client['missing_docs']%>"><br>
-      Payment Received ($):  <input type="text" name="payment_received" value="<%= client['payment_received']%>"><br>
+      </select><br><br>
+      Servicer: <input type="text" name="servicer" value="<%= client['servicer']%>"><br><br>
+      Issues/Missing Documents: <input type="text" name="missing_docs" 
+      value="<%= client['missing_docs']%>"><br><br>
+      Payment Received ($):  <input type="text" name="payment_received" 
+      value="<%= client['payment_received']%>"><br>
       <br>
       <br>
         <a class="btn btn-secondary" href="/clients/show/<%= client['_id']%>">Cancel</a>

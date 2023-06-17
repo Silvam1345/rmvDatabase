@@ -152,6 +152,15 @@ app.post("/clients/byName",
     }
 )
 
+app.post("/clients/byServicer",
+    async (req, res, next) => {
+        const servicer = req.body.servicer;
+        const clients = await Client.find({servicer:servicer})
+        res.locals.clients = clients
+        res.render("clientlist")
+    }
+)
+
 /*
 app.post("/clients/byName",
 

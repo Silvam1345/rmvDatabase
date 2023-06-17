@@ -16,50 +16,52 @@
     <br>
     <form method="post" action="/newClient/add">
         <b>Client Information</b>
-        <br>
-        First Name: <input type="text" name="first_name"><br>
-        Last Name: <input type="text" name="last_name"><br>
-        Street Address: <input type="text" name="street_address"><br>
-        City: <input type="text" name="city"><br>
-        State: <input type="text" name="state" placeholder="ex. MA"><br>
+        <br><br>
+        First Name: <input type="text" name="first_name"><br><br>
+        Last Name: <input type="text" name="last_name"><br><br>
+        Street Address: <input type="text" name="street_address"><br><br>
+        City: <input type="text" name="city"><br><br>
+        State: <input type="text" name="state" placeholder="ex. MA"><br><br>
         Zip Code: <input type="text" name="zip_code"><br>
-        <br>
+        <br><br>
         <b>Vehicle Information</b>
         <br>
+        <br>
         Vehicle Model: <input type="text" name="vehicle_model" 
-        placeholder="ex. 2009 Honda Civic"><br>
+        placeholder="ex. 2009 Honda Civic"><br><br>
         Vehicle Cost($): <input type="text" name="vehicle_cost"><br>
+        <br>
         Amount Client Paid<br>
         (Includes Office Service Cost): <input 
         type="text" name="amnt_paid"><br>
-        <br>
+        <br><br>
         <b>Service Information</b>
-        <br>
+        <br><br>
         Type of Service:
         <select name="type_of_service">
             <option value="Register Vehicle">Register Vehicle</option>
             <option value="Renew Registration">Renew Registration</option>
             <option value="Cancel Registration">Cancel Registration</option>
-        </select><br>
-        Office Service Cost($): <input type="text" name="office_service_cost"><br>
+        </select><br><br>
+        Office Service Cost($): <input type="text" name="office_service_cost"><br><br>
         Payment Type: 
         <select name="payment_type">
           <option value="Standard">Standard</option>
           <option value="Gift">Gift</option>
-      </select><br>
+      </select><br><br>
         Date documents were first received: <input type="text" 
-        name="date_documents_received" placeholder="e.g. 6/05/2023"><br>
+        name="date_documents_received" placeholder="e.g. 6/05/2023"><br><br>
         Date of Completion<br>
         (If not completed, leave blank): <input 
-        type="text" name="date_of_service_completion"><br>
+        type="text" name="date_of_service_completion"><br><br>
         Service Status:
         <select name="service_status">
           <option value="Pending Approval">Pending Approval</option>
           <option value="On Hold">On Hold</option>
           <option value="Completed"> Completed</option>
-        </select><br>
-        Servicer: <input type="text" name="servicer"><br>
-        Issues/Missing Documents: <input type="text" name="missing_docs"><br>
+        </select><br><br>
+        Servicer: <input type="text" name="servicer"><br><br>
+        Issues/Missing Documents: <input type="text" name="missing_docs"><br><br>
         Payment Received ($):  <input type="text" name="payment_received"><br>
         <br>
         <input class="btn btn-primary" type="submit" value="Save Client" onclick="notifyUser()"><br>
