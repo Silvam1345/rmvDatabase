@@ -11,7 +11,7 @@
   <body>
     <h1 style="text-align: center; margin: 1em;">Add a Client</h1>
     <hr>
-    <button class="btn btn-secondary" onclick="history.back()">Back</button>
+    <a class="btn btn-secondary" href="/">Back</a>
     <br>
     <br>
     <form method="post" action="/newClient/add">
@@ -57,8 +57,9 @@
         Service Status:
         <select name="service_status">
           <option value="Pending Approval">Pending Approval</option>
-          <option value="On Hold">On Hold</option>
+          <option value="In Progress">In Progress</option>
           <option value="Completed"> Completed</option>
+          <option value="Cancelled">Cancelled</option>
         </select><br><br>
         Servicer: <input type="text" name="servicer"><br><br>
         Issues/Missing Documents: <input type="text" name="missing_docs"><br><br>

@@ -104,14 +104,33 @@ app.get("/clients/allClients",
 
 app.post("/clients/byName",
     async (req, res, next) => {
-        const f_name = req.body.first_name;
-        const l_name = req.body.last_name;
+        let temp_f = req.body.first_name;
+        let f_ltr = "";
+        let r_ltrs = "";
+        if (temp_f.length != 0) {
+            f_ltr = temp_f.substring(0,1);
+            f_ltr = f_ltr.toUpperCase();
+            r_ltrs = temp_f.substring(1,temp_f.length)
+            r_ltrs = r_ltrs.toLowerCase();
+            temp_f = f_ltr+r_ltrs;
+        } 
+        const first_name = temp_f;
+        let temp_l = req.body.last_name;
+        if (temp_l.length != 0) {
+            f_ltr = temp_l.substring(0,1);
+            f_ltr = f_ltr.toUpperCase();
+            r_ltrs = temp_l.substring(1,temp_l.length)
+            r_ltrs = r_ltrs.toLowerCase();
+            temp_l = f_ltr+r_ltrs;
+        } 
+        const last_name = temp_l;
+
         let clients = await Client.find({})
-        if (f_name == "" || l_name == "") {
+        if (first_name == "" || last_name == "") {
             clients = await Client.find(
-                { $or: [ { first_name: { $eq: f_name}}, { last_name: { $eq: l_name}}]})
+                { $or: [ { first_name: { $eq: first_name}}, { last_name: { $eq: last_name}}]})
         } else {
-            clients = await Client.find({first_name:f_name,last_name:l_name})
+            clients = await Client.find({first_name:first_name,last_name:last_name})
         }
         res.locals.clients = clients
         res.render("clientlist")
@@ -122,6 +141,15 @@ app.post("/clients/byServicer",
     async (req, res, next) => {
         const servicer = req.body.servicer;
         const clients = await Client.find({servicer:servicer})
+        res.locals.clients = clients
+        res.render("clientlist")
+    }
+)
+
+app.post("/clients/byStatus",
+    async (req, res, next) => {
+        const service_status = req.body.service_status;
+        const clients = await Client.find({service_status:service_status})
         res.locals.clients = clients
         res.render("clientlist")
     }

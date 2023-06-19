@@ -33,10 +33,31 @@
     <form method="post" action="/clients/byServicer" style="margin-bottom: 20px;">
         Search by <b>Servicer:</b>
         <br>
-        <input type="text" name="servicer" placeholder="e.g. Mateus Silva">
+        <select name="servicer">
+            <option value="" selected disabled hidden>Choose one</option>
+            <option value="Mateus Silva">Mateus Silva</option>
+            <option value="Tiago Silva">Tiago Silva</option>
+            <option value="Giovanni Silva">Giovanni Silva</option>
+
+        </select>
         <input class="btn btn-primary" type="submit" value="Search">
-        
     </form>
+    <br>
+
+    <form method="post" action="/clients/byStatus" style="margin-bottom: 20px;">
+        Search by <b>Service Status:</b>
+        <br>
+        <select name="service_status">
+            <option value="" selected disabled hidden>Choose one</option>
+            <option value="Pending Approval">Pending Approval</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Completed">Completed</option>
+            <option value="Cancelled">Cancelled</option>
+        </select>
+        <input class="btn btn-primary" type="submit" value="Search">
+    </form>
+    <br>
+
     <div style="text-align: center; margin: 1em; padding: 10px;">
         <a class="btn btn-primary" href="/clients/allClients">View All Clients</a>
         <a class="btn btn-success" href="/newClient">Add a Client</a>
