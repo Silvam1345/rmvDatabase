@@ -1,8 +1,3 @@
-<style>
-    body{
-        font-family:'Courier New', Courier, monospace;
-    }
-  </style>
   <body>
     <script type = "text/javascript">  
       function updateConfirm(){
@@ -25,12 +20,15 @@
       <br><br>
       Vehicle Model: <input type="text" name="vehicle_model" 
       value="<%= client['vehicle_model']%>"><br><br>
-      Vehicle Cost($): <input type="text" name="vehicle_cost" 
+      Vehicle Cost ($)
+      <br>
+      (If Vehicle is Gift, put 0): <input type="text" name="vehicle_cost" 
       value="<%= client['vehicle_cost']%>"><br><br>
-      State Tax Cost($): <input type="text" name="state_tax_cost" 
+      State Tax Cost ($)
+      <br>
+      (If Vehicle is Gift, put 0): <input type="text" name="state_tax_cost" 
       value="<%= client['state_tax_cost']%>"><br><br>
-      Amount Client Paid($)<br>
-      (Including Office Service Cost): <input 
+      Total Amount Paid by Client ($): <input 
       type="text" name="amnt_paid" value="<%= client['amnt_paid']%>"><br>
       <br><br>
       <b>Service Information</b>
@@ -42,7 +40,7 @@
           <option value="Renew Registration">Renew Registration</option>
           <option value="Cancel Registration">Cancel Registration</option>
       </select><br><br>
-      Office Service Cost($): <input type="text" name="office_service_cost" 
+      Office Service Cost ($): <input type="text" name="office_service_cost" 
       value="<%= client['office_service_cost']%>"><br><br>
       Payment Type: 
       <select name="payment_type">
@@ -50,7 +48,7 @@
         <option value="Standard">Standard</option>
         <option value="Gift">Gift</option>
     </select><br><br>
-      Date documents were first received: <input type="text" 
+      Date first received on: <input type="text" 
       name="date_documents_received" value="<%= client['date_documents_received']%>"><br><br>
       Date of Completion<br>
       (If not completed, leave blank): <input 
@@ -67,7 +65,7 @@
       Servicer: <input type="text" name="servicer" value="<%= client['servicer']%>"><br><br>
       Issues/Missing Documents: <input type="text" name="missing_docs" 
       value="<%= client['missing_docs']%>"><br><br>
-      Payment Received ($):  <input type="text" name="payment_received" 
+      Payment to Servicer ($):  <input type="text" name="payment_received" 
       value="<%= client['payment_received']%>"><br>
       <br>
       <br>

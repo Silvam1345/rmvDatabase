@@ -1,65 +1,71 @@
 <style>
     body{
-        font-family:'Courier New', Courier, monospace;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
     }
 
     form {
         text-align: center;
         margin: 50px;
     }
-
 </style>
+  <div class="proportion">
+    <img class="proportion" src="/images/company_logo.png" alt="company logo">
+  </div>
   <h1 style="text-align: center; margin: 1em;">
     RMV Vehicle Registry
   </h1>
-  <p class="p-3 m-3 border border-light rounded bg-secondary">
-    This is an Express Web Database for services related to RMV vehicle registration.
-    Client's information can be searched for, added, modified, and deleted. 
-    </p>
+  <div style="align-content: center;">
+    <p class="p-3 mx-auto w-75 border border-secondary rounded bg-secondary">
+        This is an Express Web Database for services related to RMV vehicle registration.
+        Client's information can be searched for, added, modified, and deleted. 
+        </p>
+  </div>
     <br>
-    <form method="post" action="/clients/byName" style="margin-bottom: 20px;">
-        Search by <b>Name:</b>
-        <br>
+    <form method="post" action="/clients/byName" style="margin-bottom: 20px; line-height: 2em;">
+        <div style="line-height: 2em;">Search by <b>Name:</b></div><br>
 
             <input type="text" name="first_name"
                 placeholder="First Name">
             <input type="text" name="last_name" 
-                placeholder="Last Name">
+                placeholder="Last Name"><br><br>
 
         <input class="btn btn-primary" type="submit" value="Search">
 
     </form>
     <br>
     <form method="post" action="/clients/byServicer" style="margin-bottom: 20px;">
-        Search by <b>Servicer:</b>
-        <br>
+        <div style="line-height: 2em;">Search by <b>Servicer:</b></div><br>
+
         <select name="servicer">
             <option value="" selected disabled hidden>Choose one</option>
             <option value="Mateus Silva">Mateus Silva</option>
             <option value="Tiago Silva">Tiago Silva</option>
             <option value="Giovanni Silva">Giovanni Silva</option>
 
-        </select>
+        </select><br><br>
         <input class="btn btn-primary" type="submit" value="Search">
     </form>
     <br>
 
     <form method="post" action="/clients/byStatus" style="margin-bottom: 20px;">
-        Search by <b>Service Status:</b>
-        <br>
+        <div style="line-height: 2em;">Search by <b>Service Status:</b></div><br>
+
         <select name="service_status">
             <option value="" selected disabled hidden>Choose one</option>
             <option value="Pending Approval">Pending Approval</option>
             <option value="In Progress">In Progress</option>
             <option value="Completed">Completed</option>
             <option value="Cancelled">Cancelled</option>
-        </select>
+
+        </select><br><br>
         <input class="btn btn-primary" type="submit" value="Search">
     </form>
     <br>
 
-    <div style="text-align: center; margin: 1em; padding: 10px;">
+    <div style="text-align: center; margin: 1em; padding: 20px;">
         <a class="btn btn-primary" href="/clients/allClients">View All Clients</a>
+        <br>
+        <br>
         <a class="btn btn-success" href="/newClient">Add a Client</a>
     </div>
 

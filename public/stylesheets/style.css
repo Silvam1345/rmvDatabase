@@ -1,9 +1,16 @@
 body {
     padding: 50px;
-    font: 14px 'Courier New', Courier, monospace;
+    font: 14px Verdana, Geneva, Tahoma, sans-serif;
     background-color: whitesmoke;
   }
   
   a {
-    color: #00B7FF;
+    color: #2a6dff;
   }
+
+  .proportion {
+    width: 275px;
+    height: auto;
+    margin: auto;
+    padding-top: 1em;
+}
