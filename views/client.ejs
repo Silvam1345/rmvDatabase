@@ -1,42 +1,45 @@
 <body>
-    <div class="bg-light text-center m-5 p-2 border border-secondary border-2 bg-secondary">
-        <div class="mb-1 p-2">
-            <b>Client Information </b>
-            <br>
-            <br>
-            Name: <%= client['first_name'] %>
-            <%= client['last_name'] %>
-        </div>
-        <div class="mb-1 p-2 text-center" style="line-height: 3em;">
-            Address:<br>
-            <%= client['street_address']%>
-            <br>
-            <%= client['city']%>,
-            <%= client['state']%>,
-            <%= client['zip_code']%>
-        </div>
-        <div class="mb-1 p-2" style="line-height: 3em;">
-            <b>Vehicle Information</b><br>
-            Vehicle Model: <%= client['vehicle_model']%><br>
-            Vehicle Cost: $<%= client['vehicle_cost']%><br>
-            State Tax Cost: $<%= client['state_tax_cost']%><br>
-            Total Amount Paid by Client: $<%= client['amnt_paid']%>
-        </div>
+    <div class="mt-4">
+        <a class="btn btn-secondary mx-5" href="/rmvdb">Back to RMV Database</a>
+        <div class="bg-white text-center mx-5 my-3 p-2 border border-secondary rounded">
+            <div class="mb-1 p-2">
+                <b>Client Information </b>
+                <br>
+                <br>
+                Name: <%= client['first_name'] %>
+                <%= client['last_name'] %>
+            </div>
+            <div class="mb-1 p-2 text-center" style="line-height: 3em;">
+                Address:<br>
+                <%= client['street_address']%>
+                <br>
+                <%= client['city']%>,
+                <%= client['state']%>,
+                <%= client['zip_code']%>
+            </div>
+            <div class="mb-1 p-2" style="line-height: 3em;">
+                <b>Vehicle Information</b><br>
+                Vehicle Model: <%= client['vehicle_model']%><br>
+                Vehicle Cost: $<%= client['vehicle_cost']%><br>
+                State Tax Cost: $<%= client['state_tax_cost']%><br>
+                Total Amount Paid by Client: $<%= client['amnt_paid']%>
+            </div>
 
-        <div class="mb-1 p-2" style="line-height: 3em;">
-            <b>Service Information</b><br>
-            Type of Service: <%= client['type_of_service']%><br>
-            Payment Type: <%= client['payment_type']%><br>
-            Servicer: <%= client['servicer']%><br>
-            Service Status: <%= client['service_status']%><br>
-            Documents First Received On: <%= client['date_documents_received']%><br>
-            Processing Issues/Missing Docs: <%= client['missing_docs']%><br>
-            Service Completed On: <%= client['date_of_service_completion']%>
-        </div>
-        <div class="mb-1 p-3">
-            <a class="btn btn-primary" href="/updateClient/show/<%= client['_id'] %>">Update</a>
-            <a class="btn btn-danger" href="/client/delete/<%= client['_id']%>" 
-                onclick="return confirm('Are you sure you want to delete this client? This action cannot be undone.');">Delete</a>
+            <div class="mb-1 p-2" style="line-height: 3em;">
+                <b>Service Information</b><br>
+                Type of Service: <%= client['type_of_service']%><br>
+                Payment Type: <%= client['payment_type']%><br>
+                Servicer: <%= client['servicer']%><br>
+                Service Status: <%= client['service_status']%><br>
+                Documents First Received On: <%= client['date_documents_received']%><br>
+                Processing Issues/Missing Docs: <%= client['missing_docs']%><br>
+                Service Completed On: <%= client['date_of_service_completion']%>
+            </div>
+            <div class="mb-1 p-3">
+                <a class="btn btn-primary" href="/updateClient/show/<%= client['_id'] %>">Update</a>
+                <a class="btn btn-danger" href="/client/delete/<%= client['_id']%>" 
+                    onclick="return confirm('Are you sure you want to delete this client? This action cannot be undone.');">Delete</a>
+            </div>
         </div>
     </div>
 </body>

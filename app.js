@@ -85,20 +85,46 @@ app.use(
  * Defines the routes the Express server will respond to
  */
 
-app.get("/", (req, res, next) => {
-    res.render("index");
+// Handles all /login /logout routes
+const auth = require('./routes/auth');
+const { deflateSync } = require('zlib');
+app.use(auth)
+
+//
+const isLoggedIn = (req, res, next) => {
+    if (res.locals.loggedIn) {
+        next()
+    }
+    else res.redirect('/login')
+}
+
+
+app.get("/", 
+(req, res, next) => {
+    res.render("landing");
   });
-  
+
+app.get("/home", isLoggedIn,
+(req, res, next) => {
+    res.render("home");
+  });
+
 app.get("/about", (req, res, next) => {
     res.render("about");
   });
 
-app.get("/newClient", (req, res, next) => {
+app.get("/rmvdb", isLoggedIn,
+ (req, res, next) => {
+    res.render("index");
+})
+app.get("/newClient", 
+isLoggedIn, 
+(req, res, next) => {
     res.render("newClient");
 })
 
 // Returns the entire list of clients in the database
-app.get("/clients/allClients",
+app.get("/clients/allClients", isLoggedIn, 
 
     async (req, res, next) => {
         const clients = await Client.find({})
@@ -108,7 +134,7 @@ app.get("/clients/allClients",
 )
 
 // Takes the first and/or last name inputted and returns a list of all clients matching them
-app.post("/clients/byName",
+app.post("/clients/byName", isLoggedIn, 
     async (req, res, next) => {
         let temp_f = req.body.first_name;
         let f_ltr = "";
@@ -143,7 +169,7 @@ app.post("/clients/byName",
     }
 )
 
-app.post("/clients/byServicer",
+app.post("/clients/byServicer", isLoggedIn, 
     async (req, res, next) => {
         const servicer = req.body.servicer;
         const clients = await Client.find({servicer:servicer})
@@ -152,7 +178,7 @@ app.post("/clients/byServicer",
     }
 )
 
-app.post("/clients/byStatus",
+app.post("/clients/byStatus", isLoggedIn, 
     async (req, res, next) => {
         const service_status = req.body.service_status;
         const clients = await Client.find({service_status:service_status})
@@ -162,7 +188,7 @@ app.post("/clients/byStatus",
 )
 
 // Returns all information about a specific client when given the client id
-app.get('/clients/show/:clientId',
+app.get('/clients/show/:clientId', isLoggedIn, 
   async (req,res,next) => {
     const {clientId} = req.params;
     const client = await Client.findOne({_id:clientId})
@@ -175,7 +201,7 @@ app.get('/clients/show/:clientId',
  * Creates a new client in the collection with the inputted info in the newClient page
  * and redirects back to the newClient page
  */
-app.post("/newClient/add", 
+app.post("/newClient/add", isLoggedIn, 
     async (req, res, next) => {
         try {
             const{first_name,last_name,street_address,city,state,zip_code,
@@ -200,7 +226,7 @@ app.post("/newClient/add",
 
 // Provides the current client info to be displayed on the page 
 // for the user to change if desired
-app.get("/updateClient/show/:clientId", 
+app.get("/updateClient/show/:clientId", isLoggedIn, 
 async (req, res, next) => {
     const {clientId} = req.params;
     const client = await Client.findOne({_id:clientId})
@@ -212,7 +238,7 @@ async (req, res, next) => {
  * Takes the information inputted and updates the entry with the matching id
  * and redirects to the client page with the updated info
  */
-app.post("/updateClient/update/:clientId",
+app.post("/updateClient/update/:clientId", isLoggedIn, 
     async (req,res,next) => {
         try {
             const clientId = req.params.clientId;
@@ -236,7 +262,7 @@ app.post("/updateClient/update/:clientId",
 
 // After prompting the user to confirm their decision, takes the client id, finds and 
 // deletes the entry with the matching id and returns to the home page
-app.get("/client/delete/:clientId",
+app.get("/client/delete/:clientId", isLoggedIn, 
     async (req, res, next) => {
         try {
             const clientId = req.params.clientId;
