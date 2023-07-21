@@ -48,7 +48,7 @@ router.post('/login',
         try {
             const {username,password} = req.body
             const user = await User.findOne({username:username})
-            
+            const isMatch = await bcrypt.compare(password,user.password);
             if (isMatch) {
                 req.session.username = username
                 req.session.user = user
