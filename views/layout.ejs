@@ -12,7 +12,7 @@
     <!-- custom CSS -->
     <link rel='stylesheet' href='/stylesheets/style.css' />
 
-    <link rel="icon" href="/images/home_icon.jpg" />
+    <link rel="icon" href="/images/portal_icon.jpg" />
   </head>
   <style>
     .bg-secondary{
@@ -30,11 +30,11 @@
         <nav class="navbar fixed-top navbar-expand-xl navbar-light m-auto" style="background-color: white;">
           <% if (!loggedIn) {%>
             <a class="navbar-brand" href="/"><img class="logo" 
-              style="height: 50px; padding-left: 2em;" alt="Company Icon of a Handshake" 
+              style="height: 40px; padding-left: 2em;" alt="Company Icon of a Handshake" 
               src="/images/home_icon.jpg"></a>
           <% } else { %>
             <a class="navbar-brand" href="/home"><img class="logo" 
-              style="height: 50px; padding-left: 2em;" alt="Company Icon of a Handshake" 
+              style="height: 40px; padding-left: 2em;" alt="Company Icon of a Handshake" 
               src="/images/home_icon.jpg"></a>
           <% } %>
           <button class="navbar-toggler mx-4" type="button" data-bs-toggle="collapse" 
@@ -43,34 +43,34 @@
             <span class="navbar-toggler-icon"></span>
           </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav mr-auto" style="padding-left: 2em; padding-top: 0.5em; padding-bottom: 0.5em;">
+              <ul class="navbar-nav mr-auto" style="padding-left: 2em; padding-top: 0.2em; padding-bottom: 0.2em;">
         
                 <% if (!loggedIn) {%>
 
-                  <li class="nav-item" style="font-size: medium;">
-                    <a class="nav-link" href="/about">About</a>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/login">Login</a>
                   </li>
 
-                  <li class="nav-item" style="font-size: medium;">
-                    <a class="nav-link" href="/login">Login</a>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/about">About</a>
                   </li>
 
                 <% } else { %>
 
-                  <li class="nav-item" style="font-size: medium;">
-                    <a class="nav-link" href="/about">About</a>
-                  </li>
-
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: medium;">Databases</a>
+                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Databases</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                       <a class="dropdown-item" href="/rmvdb">RMV Registry</a>
                     </div>
                   </li>
 
-                  <li class="nav-item my-2 my-lg-0" style="font-size: medium;">
-                    <a class="nav-link" href="/logout">Logout <%= username %></a>
+                  <li class="nav-item my-2 my-lg-0">
+                    <a class="nav-link" href="/logout">Logout</a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a class="nav-link" href="/about">About</a>
                   </li>
                 <% } %>
               </ul>

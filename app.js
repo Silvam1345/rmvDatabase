@@ -187,6 +187,15 @@ app.post("/clients/byStatus", isLoggedIn,
     }
 )
 
+app.post('/clients/byDate', isLoggedIn,
+    async (req, res, next) => {
+        const date_documents_received = req.body.date_documents_received;
+        const clients = await Client.find({date_documents_received:date_documents_received})
+        res.locals.clients = clients
+        res.render("clientlist")
+    }
+)
+
 // Returns all information about a specific client when given the client id
 app.get('/clients/show/:clientId', isLoggedIn, 
   async (req,res,next) => {
