@@ -52,7 +52,7 @@ router.post('/login',
             if (isMatch) {
                 req.session.username = username
                 req.session.user = user
-                res.redirect('/home')
+                res.redirect('/')
             } else {
                 req.session.username = null
                 req.session.user = null
@@ -89,7 +89,7 @@ router.post('/signup',
                     await user.save()
                     req.session.username = user.username
                     req.session.user = user
-                    res.redirect('/home')
+                    res.redirect('/')
                 }
             }
         } catch(e){

@@ -17,7 +17,20 @@
     Portal Do Imigrante Database Query
   </h1>
   <div style="align-content: center;">
-    <p class="p-3 mx-auto w-75 border border-secondary rounded bg-white" style="text-align: center;">
+    <p class="p-3 mx-auto w-75 border rounded bg-white" style="text-align: center;">
         This is an Express Web Database App for Portal Do Imigrante. 
         </p>
   </div>
+
+  <% if (!loggedIn) {%>
+    <br>
+    <div style="align-content: center;">
+      <p class="p-3 mx-auto w-75 border rounded bg-white" style="text-align: center;">
+          To access the databases on this site, please log in below. 
+          </p>
+      
+      <div style="text-align: center; margin: 1em; padding: 20px;">
+          <a class="btn btn-primary" href="/login">Login</a>
+      </div>
+    </div>
+    <% } %>

@@ -90,7 +90,11 @@ const auth = require('./routes/auth');
 const { deflateSync } = require('zlib');
 app.use(auth)
 
-//
+/**
+ * Middleware to check if the user is logged in, if not, redirects
+ * to the login page
+ */
+
 const isLoggedIn = (req, res, next) => {
     if (res.locals.loggedIn) {
         next()
@@ -98,13 +102,7 @@ const isLoggedIn = (req, res, next) => {
     else res.redirect('/login')
 }
 
-
 app.get("/", 
-(req, res, next) => {
-    res.render("landing");
-  });
-
-app.get("/home", isLoggedIn,
 (req, res, next) => {
     res.render("home");
   });
@@ -276,7 +274,7 @@ app.get("/client/delete/:clientId", isLoggedIn,
         try {
             const clientId = req.params.clientId;
             await Client.deleteOne({_id:clientId})
-            res.redirect("/")
+            res.redirect("/rmvdb")
 
         } catch (e) {
             next(e);
