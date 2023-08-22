@@ -102,6 +102,65 @@ const isLoggedIn = (req, res, next) => {
     else res.redirect('/login')
 }
 
+/**
+ * Parses the date object and returns a simplified string format to display on the 
+ * clientlist and client pages
+ */
+
+function parseDate(date) {
+    
+    const yyyy = date.getFullYear();
+    let mm = date.getMonth() + 1;
+    let dd = date.getDate();
+    if (dd < 10) {
+        dd = '0' + dd;
+    }
+    if (mm < 10) {
+        mm = '0' + mm;
+    }
+    const form_date = mm+'/'+dd+'/'+yyyy;
+    
+    return form_date;
+}
+/**
+ * Reformats the date object and returns the proper string format of the date-type input
+ * to be displayed as the saved dates on the updateClient page 
+ */
+
+function reformatDate(date) {
+    const yyyy = date.getFullYear();
+    let mm = date.getMonth() + 1;
+    let dd = date.getDate();
+    if (dd < 10) {
+        dd = '0' + dd;
+    }
+    if (mm < 10) {
+        mm = '0' + mm;
+    }
+    const form_date = yyyy+'-'+mm+'-'+dd;
+    return form_date;
+}
+
+// Takes and returns a date object with a certain number of hours added to it
+function addHours(date, hours) {
+    date.setHours(date.getHours() + hours);
+    return date;
+}
+
+/**
+ * Takes the list of client objects and localizes each date field to display
+ * the correct day, month, and year 
+ */
+function localizeDates(clients) {
+    for (client of clients) {
+        let localDate = client['date_documents_received'];
+        localDate = addHours(localDate,4);
+
+        client['date_documents_received'] = parseDate(localDate)
+    }
+    return clients
+}
+
 app.get("/", 
 (req, res, next) => {
     res.render("home");
@@ -125,7 +184,8 @@ isLoggedIn,
 app.get("/clients/allClients", isLoggedIn, 
 
     async (req, res, next) => {
-        const clients = await Client.find({})
+        let clients = await Client.find({})
+        clients = localizeDates(clients);
         res.locals.clients = clients
         res.render("clientlist")
     } 
@@ -155,13 +215,14 @@ app.post("/clients/byName", isLoggedIn,
         } 
         const last_name = temp_l;
 
-        let clients = await Client.find({})
+        let clients = null;
         if (first_name == "" || last_name == "") {
             clients = await Client.find(
                 { $or: [ { first_name: { $eq: first_name}}, { last_name: { $eq: last_name}}]})
         } else {
             clients = await Client.find({first_name:first_name,last_name:last_name})
         }
+        clients = localizeDates(clients);
         res.locals.clients = clients
         res.render("clientlist")
     }
@@ -170,7 +231,8 @@ app.post("/clients/byName", isLoggedIn,
 app.post("/clients/byServicer", isLoggedIn, 
     async (req, res, next) => {
         const servicer = req.body.servicer;
-        const clients = await Client.find({servicer:servicer})
+        let clients = await Client.find({servicer:servicer})
+        clients = localizeDates(clients);
         res.locals.clients = clients
         res.render("clientlist")
     }
@@ -179,7 +241,8 @@ app.post("/clients/byServicer", isLoggedIn,
 app.post("/clients/byStatus", isLoggedIn, 
     async (req, res, next) => {
         const service_status = req.body.service_status;
-        const clients = await Client.find({service_status:service_status})
+        let clients = await Client.find({service_status:service_status})
+        clients = localizeDates(clients);
         res.locals.clients = clients
         res.render("clientlist")
     }
@@ -187,8 +250,24 @@ app.post("/clients/byStatus", isLoggedIn,
 
 app.post('/clients/byDate', isLoggedIn,
     async (req, res, next) => {
-        const date_documents_received = req.body.date_documents_received;
-        const clients = await Client.find({date_documents_received:date_documents_received})
+        const start_date = req.body.start_date;
+        let end_date = req.body.end_date;
+        let clients = null;
+        
+        if (end_date == '' || end_date == start_date) {
+            clients = await Client.find({date_documents_received: {
+                $eq: new Date(start_date)
+            }})
+        }
+
+        else {
+            clients = await Client.find({date_documents_received: {
+                $gte: new Date(start_date),
+                $lte: new Date(end_date)
+            }})
+        }
+
+        clients = localizeDates(clients);
         res.locals.clients = clients
         res.render("clientlist")
     }
@@ -200,6 +279,10 @@ app.get('/clients/show/:clientId', isLoggedIn,
     const {clientId} = req.params;
     const client = await Client.findOne({_id:clientId})
     res.locals.client = client
+    let localDate = client.date_documents_received;
+    res.locals.client._doc.date_documents_received = parseDate(addHours(localDate,4))
+    localDate = client.date_of_service_completion;
+    res.locals.client._doc.date_of_service_completion = parseDate(addHours(localDate,4))
     res.render('client')
   }
 )
@@ -213,9 +296,10 @@ app.post("/newClient/add", isLoggedIn,
         try {
             const{first_name,last_name,street_address,city,state,zip_code,
                 type_of_service,amnt_paid,vehicle_cost,office_service_cost,
-                vehicle_model,date_documents_received,date_of_service_completion,
-                payment_type,service_status,servicer,missing_docs,payment_received} = req.body;
-            
+                vehicle_model, payment_type,service_status,servicer,missing_docs,
+                payment_received} = req.body;
+            let date_documents_received = new Date(req.body.date_documents_received)
+            let date_of_service_completion = new Date(req.body.date_of_service_completion)
             const state_tax_cost = (req.body.vehicle_cost)*.0625
             let data = {first_name,last_name,street_address,city,state,zip_code,
                 type_of_service,amnt_paid,vehicle_cost,state_tax_cost,office_service_cost,
@@ -226,6 +310,7 @@ app.post("/newClient/add", isLoggedIn,
             res.redirect('/newClient')
             console.log("Client has been added successfully!")
         } catch (e) {
+            console.log("Failed to add Client.")
             next(e);
         }
     }
@@ -238,6 +323,10 @@ async (req, res, next) => {
     const {clientId} = req.params;
     const client = await Client.findOne({_id:clientId})
     res.locals.client = client
+    let localDate = client.date_documents_received;
+    res.locals.client._doc.date_documents_received = reformatDate(addHours(localDate,4))
+    localDate = client.date_of_service_completion;
+    res.locals.client._doc.date_of_service_completion = reformatDate(addHours(localDate,4))
     res.render("updateClient");
 })
 
@@ -252,8 +341,9 @@ app.post("/updateClient/update/:clientId", isLoggedIn,
 
             const {first_name,last_name,street_address,city,state,zip_code,
                 type_of_service,amnt_paid,vehicle_cost,state_tax_cost,office_service_cost,
-                vehicle_model,date_documents_received,date_of_service_completion,
-                payment_type,service_status,servicer,missing_docs,payment_received} = req.body;
+                vehicle_model, payment_type,service_status,servicer,missing_docs,payment_received} = req.body;
+            let date_documents_received = new Date(req.body.date_documents_received)
+            let date_of_service_completion = new Date(req.body.date_of_service_completion)
             
             await Client.findByIdAndUpdate(clientId, {first_name,last_name,street_address,city,state,zip_code,
                 type_of_service,amnt_paid,vehicle_cost,state_tax_cost,office_service_cost,

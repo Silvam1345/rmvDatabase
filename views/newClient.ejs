@@ -38,20 +38,21 @@
             <option value="" selected disabled hidden>Choose one</option>
             <option value="Register Vehicle">Register Vehicle</option>
             <option value="Renew Registration">Renew Registration</option>
+            <option value="Reinstate Registration"> Reinstate Registration</option>
             <option value="Cancel Registration">Cancel Registration</option>
         </select><br><br>
-        Office Service Cost ($): <input type="text" name="office_service_cost"><br><br>
+        Office Service Cost ($): <input type="text" name="office_service_cost" value="100"><br><br>
         Payment Type: 
         <select name="payment_type">
           <option value="" selected disabled hidden>Choose one</option>
           <option value="Standard">Standard</option>
           <option value="Gift">Gift</option>
       </select><br><br>
-        Documents first received on: <input type="text" 
-        name="date_documents_received" placeholder="e.g. MM/DD/YYYY"><br><br>
+        Date first received on: <input type="date" name="date_documents_received" 
+        value = "2023-01-01" min="2020-01-01" max="2030-12-31" required><br><br>
         Date of Completion<br>
-        (If not completed, leave blank): <input 
-        type="text" name="date_of_service_completion"><br><br>
+        (If not completed, use current date): <input type="date" name="date_of_service_completion" 
+        value = "2023-01-01" min="2020-01-01" max="2030-12-31" required><br><br>
         Service Status:
         <select name="service_status">
           <option value="" selected disabled hidden>Choose one</option>
@@ -62,7 +63,7 @@
         </select><br><br>
         Servicer: <input type="text" name="servicer"><br><br>
         Issues/Missing Documents: <input type="text" name="missing_docs"><br><br>
-        Payment to Servicer ($):  <input type="text" name="payment_received"><br>
+        Payment to Servicer ($):  <input type="text" name="payment_received" value="80"><br>
         <br>
         <input class="btn btn-primary" type="submit" value="Save Client" onclick="notifyUser()"><br>
     </form>

@@ -10,6 +10,8 @@
                 <th>Vehicle Model</th>
                 <th>Vehicle Cost</th>
                 <th>Payment Type</th>
+                <th>Amount Paid</th>
+                <th>Received On</th>
                 <th>Service Status</th>
                 <th>Missing Documents</th>
             </tr>
@@ -41,6 +43,12 @@
                         </td>
                         <td>
                             <%= client['payment_type'] %>
+                        </td>
+                        <td>
+                            <%= client['amnt_paid'] %>
+                        </td>
+                        <td>
+                            <%= client['date_documents_received'] %>
                         </td>
                         <td>
                             <%= client['service_status'] %>

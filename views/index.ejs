@@ -63,10 +63,13 @@
     <br>
 
     <form method="post" action="/clients/byDate" style="margin-bottom: 20px; line-height: 2em;">
-        <div style="line-height: 2em;">Search by <b>Start Date:</b></div><br>
-
-            <input type="text" name="date_documents_received"
-            placeholder="M/DD/YYYY"><br><br>
+        <div style="line-height: 2em;">Search by <b>Date:</b></div><br>
+            <div>From:</div><br>
+            <input type="date" id='start_date' name="start_date"
+            value="2023-01-01" min="2020-01-01" max="2030-12-31" required><br><br>
+            <div>To:</div><br>
+            <input type="date" id="end_date" name="end_date" 
+            value="2023-01-01" min="2020-01-01" max="2030-12-31"><br><br>
         <input class="btn btn-primary" type="submit" value="Search">
     </form>
     <br>
