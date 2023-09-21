@@ -161,6 +161,13 @@ function localizeDates(clients) {
     return clients
 }
 
+function toTitleCase(string) {
+    let f_letter = string.substring(0,1).toUpperCase();
+    let new_string = f_letter+string.substring(1,string.length).toLowerCase();
+    return new_string
+
+}
+
 app.get("/", 
 (req, res, next) => {
     res.render("home");
@@ -191,37 +198,50 @@ app.get("/clients/allClients", isLoggedIn,
     } 
 )
 
-// Takes the first and/or last name inputted and returns a list of all clients matching them
+// Takes the first and/or last names inputted and returns a list of all clients matching them
 app.post("/clients/byName", isLoggedIn, 
     async (req, res, next) => {
-        let temp_f = req.body.first_name;
-        let f_ltr = "";
-        let r_ltrs = "";
-        if (temp_f.length != 0) {
-            f_ltr = temp_f.substring(0,1);
-            f_ltr = f_ltr.toUpperCase();
-            r_ltrs = temp_f.substring(1,temp_f.length)
-            r_ltrs = r_ltrs.toLowerCase();
-            temp_f = f_ltr+r_ltrs;
-        } 
-        const first_name = temp_f;
-        let temp_l = req.body.last_name;
-        if (temp_l.length != 0) {
-            f_ltr = temp_l.substring(0,1);
-            f_ltr = f_ltr.toUpperCase();
-            r_ltrs = temp_l.substring(1,temp_l.length)
-            r_ltrs = r_ltrs.toLowerCase();
-            temp_l = f_ltr+r_ltrs;
-        } 
-        const last_name = temp_l;
+        let first_name = null
+        let last_name = null
+        let clients = null
+        let name = req.body.name.trim();
+         // Splits the inputted string into a list of names
+        let name_keywords = name.split(" ");
 
-        let clients = null;
-        if (first_name == "" || last_name == "") {
-            clients = await Client.find(
-                { $or: [ { first_name: { $eq: first_name}}, { last_name: { $eq: last_name}}]})
-        } else {
+        // If the user input has a first and last name/s
+        if (name_keywords.length > 1) {
+            first_name = toTitleCase(name_keywords[0]);
+            if (name_keywords.length === 2) {
+                last_name = toTitleCase(name_keywords[1]);
+            }
+            // If the inputted name has a middle name or has more than one last name
+            else if (name_keywords.length > 2){
+                last_name = toTitleCase(name_keywords[name_keywords.length-2])+" "+toTitleCase(name_keywords[name_keywords.length-1]);
+            }
             clients = await Client.find({first_name:first_name,last_name:last_name})
+            
+            // If there are no matching clients with the exact first and last names
+            if (clients.length === 0) {
+                clients = await Client.find(
+                { $or: [ { first_name: { $regex: first_name, $options: "i"}}, { last_name: { $regex: last_name, $options: "i"}}]})
+            }
         }
+        // If user input is one name
+        else if (name_keywords.length === 1) {
+            name = toTitleCase(name)
+            clients = await Client.find(
+                { $or: [ { first_name: { $eq: name}}, { last_name: { $eq: name}}]})
+            //If there are no exact matching first or last names
+            if (clients.length === 0) {
+                clients = await Client.find(
+                    { $or: [ { first_name: { $regex: name, $options: "i"}}, { last_name: {$regex: name, $options: "i"}}]})
+            }
+        }
+        // If the input is empty
+        else {
+            clients = await Client.find({})
+        }
+        
         clients = localizeDates(clients);
         res.locals.clients = clients
         res.render("clientlist")
