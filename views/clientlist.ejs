@@ -1,13 +1,16 @@
 <body>
     <h1>Search Results (<%= clients.length %> found)</h1>
     <hr>
-    <a class="btn btn-primary mb-4" href="/rmvdb">Back to RMV</a><br>
+    <div style="text-align: center;">
+        <a class="btn btn-primary mb-4" href="/rmvdb">Back to RMV</a><br>
+    </div>
     <form method="post" action="/clients/byName" style="margin-bottom: 20px; line-height: 2em;">
-        <div style="line-height: 2em; text-align: center;">
+        <div style="line-height: 1em; text-align: center;">
             <input class="form-control" type="text" name="name" placeholder="Search for clients..."><br>
             <input class="btn btn-outline-primary btn-sm mx-auto" type="submit" value="Search">
         </div>
     </form>
+        
     <table class="table table-bordered table-striped">
         <thead>
             <tr>

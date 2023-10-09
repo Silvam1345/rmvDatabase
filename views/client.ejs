@@ -1,6 +1,8 @@
 <body>
     <div class="mt-4">
-        <a class="btn btn-secondary mx-5" href="/rmvdb">Back to RMV Database</a>
+        <div style="text-align: center;">
+            <a class="btn btn-outline-primary mx-5" style="text-align: center;" href="/rmvdb">Back to RMV Database</a>
+        </div>
         <div class="bg-white text-center mx-5 my-3 p-2 border border-secondary rounded">
             <div class="mb-1 p-2">
                 <b>Client Information </b>
@@ -22,7 +24,7 @@
                 Vehicle Model: <%= client['vehicle_model']%><br>
                 Vehicle Cost: $<%= client['vehicle_cost']%><br>
                 State Tax Cost: $<%= client['state_tax_cost']%><br>
-                Total Amount Paid by Client: $<%= client['amnt_paid']%>
+                Total Amount Paid: $<%= client['amnt_paid']%>
             </div>
 
             <div class="mb-1 p-2" style="line-height: 3em;">
@@ -31,9 +33,9 @@
                 Payment Type: <%= client['payment_type']%><br>
                 Servicer: <%= client['servicer']%><br>
                 Service Status: <%= client['service_status']%><br>
-                Documents First Received On: <%= client['date_documents_received']%><br>
+                Received On: <%= client['date_documents_received']%><br>
                 Processing Issues/Missing Docs: <%= client['missing_docs']%><br>
-                Service Completed On: <%= client['date_of_service_completion']%>
+                Completed On: <%= client['date_of_service_completion']%>
             </div>
             <div class="mb-1 p-3">
                 <a class="btn btn-primary" href="/updateClient/show/<%= client['_id'] %>">Update</a>

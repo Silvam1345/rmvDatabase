@@ -9,9 +9,24 @@ body {
     color: #2a6dff;
   }
 
+  form {
+    text-align: center;
+    margin: 50px;
+}
+
   .proportion {
-    width: 275px;
+    width: 60%;
     height: auto;
     margin: auto;
     padding-top: 1em;
-}
+  }
+
+  .info {
+    margin: 0.5em;
+  }
+
+  .inputStyle {
+    margin-bottom: 1.5em;
+    line-height: 2em;
+  }
+  

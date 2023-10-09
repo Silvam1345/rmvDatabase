@@ -181,6 +181,12 @@ app.get("/rmvdb", isLoggedIn,
  (req, res, next) => {
     res.render("index");
 })
+
+app.get("/profile", isLoggedIn,
+    (req, res, next) => {
+        res.render("profile");
+    })
+
 app.get("/newClient", 
 isLoggedIn, 
 (req, res, next) => {

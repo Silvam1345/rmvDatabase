@@ -6,73 +6,69 @@
     </script> 
     <h1 style="text-align: center; margin: 1em;">Update Client</h1>
     <hr>
-    <form method="post" action="/updateClient/update/<%= client['_id']%>">
-      <b>Client Information</b>
+    <form style="text-align: center;" method="post" action="/updateClient/update/<%= client['_id']%>">
+      <div style="font-size: large; font-weight: bold; margin-bottom: 2em;">Client Information</div>
+
+      <div class="info">First Name</div><input class="inputStyle" type="text" name="first_name" value="<%= client['first_name']%>">
+      <div class="info">Last Name</div><input class="inputStyle" type="text" name="last_name" value="<%= client['last_name']%>">
+      <div class="info">Street Address</div><input class="inputStyle" type="text" name="street_address" value="<%= client['street_address']%>">
+      <div class="info">City</div><input class="inputStyle" type="text" name="city" value="<%= client['city']%>">
+      <div class="info">State</div><input class="inputStyle" type="text" name="state" value="<%= client['state']%>">
+      <div class="info">Zip Code</div><input class="inputStyle" type="text" name="zip_code" value="<%= client['zip_code']%>">
       <br><br>
-      First Name: <input type="text" name="first_name" value="<%= client['first_name']%>"><br><br>
-      Last Name: <input type="text" name="last_name" value="<%= client['last_name']%>"><br><br>
-      Street Address: <input type="text" name="street_address" value="<%= client['street_address']%>"><br><br>
-      City: <input type="text" name="city" value="<%= client['city']%>"> <br><br>
-      State: <input type="text" name="state" value="<%= client['state']%>"><br><br>
-      Zip Code: <input type="text" name="zip_code" value="<%= client['zip_code']%>"><br><br>
-      <br>
-      <b>Vehicle Information</b>
+      <div style="font-size: large; font-weight: bold; margin-bottom: 2em;">Vehicle Information</div>
+
+      <div class="info">Vehicle Model</div><input class="inputStyle" type="text" name="vehicle_model" 
+      value="<%= client['vehicle_model']%>">
+      <div class="info"> Vehicle Cost ($)<br>(If Vehicle is Gift, put 0):</div>
+      <input class="inputStyle" type="text" name="vehicle_cost" 
+      value="<%= client['vehicle_cost']%>">
+      <div class="info">State Tax Cost ($)<br>
+        (If Vehicle is Gift, put 0)</div>
+      <input class="inputStyle" type="text" name="state_tax_cost" 
+      value="<%= client['state_tax_cost']%>">
+      <div class="info">Total Amount Paid ($)</div><input class="inputStyle"
+      type="text" name="amnt_paid" value="<%= client['amnt_paid']%>">
       <br><br>
-      Vehicle Model: <input type="text" name="vehicle_model" 
-      value="<%= client['vehicle_model']%>"><br><br>
-      Vehicle Cost ($)
-      <br>
-      (If Vehicle is Gift, put 0): <input type="text" name="vehicle_cost" 
-      value="<%= client['vehicle_cost']%>"><br><br>
-      State Tax Cost ($)
-      <br>
-      (If Vehicle is Gift, put 0): <input type="text" name="state_tax_cost" 
-      value="<%= client['state_tax_cost']%>"><br><br>
-      Total Amount Paid by Client ($): <input 
-      type="text" name="amnt_paid" value="<%= client['amnt_paid']%>"><br>
-      <br><br>
-      <b>Service Information</b>
-      <br><br>
-      Type of Service:
-      <select name="type_of_service">
-          <option value="" selected disabled hidden>Choose one</option>
+      <div style="font-size: large; font-weight: bold; margin-bottom: 2em;">Service Information</div>
+      
+      <div class="info">Service Type</div>
+      <select class="inputStyle" name="type_of_service">
+          <option value="<%= client['type_of_service'] %>" selected hidden> <%= client['type_of_service'] %></option>
           <option value="Register Vehicle">Register Vehicle</option>
           <option value="Renew Registration">Renew Registration</option>
           <option value="Reinstate Registration"> Reinstate Registration</option>
           <option value="Cancel Registration">Cancel Registration</option>
-      </select><br><br>
-      Office Service Cost ($): <input type="text" name="office_service_cost" 
-      value="<%= client['office_service_cost']%>"><br><br>
-      Payment Type: 
-      <select name="payment_type">
-        <option value="" selected disabled hidden>Choose one</option>
+      </select>
+      <div class="info">Office Service Fee ($)</div><input class="inputStyle" type="text" name="office_service_cost" 
+      value="<%= client['office_service_cost']%>">
+      <div class="info">Payment Type</div>
+      <select class="inputStyle" name="payment_type">
+        <option value="<%= client['payment_type'] %>" selected hidden> <%= client['payment_type'] %></option>
         <option value="Standard">Standard</option>
         <option value="Gift">Gift</option>
-    </select><br><br>
-      Date first received on: <input type="date" 
-      name="date_documents_received" value="<%= client['date_documents_received']%>" required><br><br>
-      Date of Completion<br>
-      (If not completed, use current date): <input 
+    </select>
+    <div class="info">Received On</div><input class="inputStyle" type="date" 
+      name="date_documents_received" value="<%= client['date_documents_received']%>" required>
+      <div class="info">Completed On<br>
+        (If not completed, use current date)</div><input class="inputStyle"
       type="date" name="date_of_service_completion" 
-      value="<%= client['date_of_service_completion']%>" required><br><br>
-      Service Status:
-      <select name="service_status">
-        <option value="" selected disabled hidden>Choose one</option>
+      value="<%= client['date_of_service_completion']%>" required>
+      <div class="info">Service Status</div>
+      <select class="inputStyle" name="service_status">
+        <option value="<%= client['service_status'] %>" selected hidden> <%= client['service_status'] %></option>
         <option value="Pending Approval">Pending Approval</option>
         <option value="In Progress">In Progress</option>
         <option value="Completed"> Completed</option>
         <option value="Cancelled">Cancelled</option>
-      </select><br><br>
-      Servicer: <input type="text" name="servicer" value="<%= client['servicer']%>"><br><br>
-      Issues/Missing Documents: <input type="text" name="missing_docs" 
-      value="<%= client['missing_docs']%>"><br><br>
-      Payment to Servicer ($):  <input type="text" name="payment_received" 
+      </select>
+      <div class="info">Servicer</div><input class="inputStyle" type="text" name="servicer" value="<%= client['servicer']%>">
+      <div class="info">Issues/Missing Documents</div><input class="inputStyle" type="text" name="missing_docs" 
+      value="<%= client['missing_docs']%>">
+      <div class="info">Payment to Servicer ($)</div><input class="inputStyle" type="text" name="payment_received" 
       value="<%= client['payment_received']%>"><br>
-      <br>
-      <br>
-        <a class="btn btn-secondary" href="/clients/show/<%= client['_id']%>">Cancel</a>
-      <br>
-      <br>
-      <input class="btn btn-primary" type="submit" value="Save Changes" onclick="updateConfirm()"><br>
+        <a class="btn btn-outline-primary" href="/clients/show/<%= client['_id']%>">Cancel</a>
+      <br><br>
+      <input class="btn btn-primary" type="submit" value="Save Changes" onclick="updateConfirm()">
   </form>
   </body>

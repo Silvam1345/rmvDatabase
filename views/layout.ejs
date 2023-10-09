@@ -20,14 +20,14 @@
       
     }
     .nav-item {
-      margin-right: 3em;
+      margin-right: 2.5em;
     }
   </style>
   <body>
     <div class="container-fluid">
 
 
-        <nav class="navbar fixed-top navbar-expand-xl navbar-light m-auto" style="background-color: white;">
+        <nav class="navbar fixed-top navbar-expand-xl navbar-light" style="background-color: white;">
           <a class="navbar-brand" href="/"><img class="logo" 
             style="height: 40px; padding-left: 2em;" alt="Company Icon of a Handshake" 
             src="/images/home_icon.jpg"></a>
@@ -38,39 +38,43 @@
             <span class="navbar-toggler-icon"></span>
           </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav mr-auto" style="padding-left: 2em; padding-top: 0.2em; padding-bottom: 0.2em;">
-        
-                <% if (!loggedIn) {%>
-
-                  <li class="nav-item">
-                    <a class="nav-link" href="/login">Login</a>
-                  </li>
-
-                  <li class="nav-item">
-                    <a class="nav-link" href="/about">About</a>
-                  </li>
-
-                <% } else { %>
-
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Databases</a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="/rmvdb">RMV Registry</a>
-                    </div>
-                  </li>
-
-                  <li class="nav-item my-2 my-lg-0">
-                    <a class="nav-link" href="/logout">Logout</a>
-                  </li>
-
-                  <li class="nav-item">
-                    <a class="nav-link" href="/about">About</a>
-                  </li>
+              <ul class="navbar-nav" style="padding-left: 2em; padding-top: 0.2em; padding-bottom: 0.2em;">
+                <% if (loggedIn) {%>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                  data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Databases</a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="/rmvdb">RMV Registry</a></li>
+                  </ul>
+                </li>
                 <% } %>
+                <li class="nav-item">
+                  <a class="nav-link" href="/about">About</a>
+                </li>
+                
               </ul>
-              
-          
+
+              <% if (loggedIn) {%>
+                <div class="nav-item dropdown " style="padding-left: 1em; margin-left: auto;">
+                  
+                  <a class="nav-link dropdown-toggle my-4 my-lg-0" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="navy" class="bi bi-person-circle" viewBox="0 0 16 16">
+                  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                    </svg></a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="/profile">View Profile</a></li>
+                    <li><a class="dropdown-item" href="/logout">Log Out</a></li>
+                  </ul>
+                </div>
+
+              <% } else { %>
+                <div style="padding-left: 1em; margin-left: auto; padding-right: 2em;">
+                  <a class="nav-link" style="color: black;" href="/login">Log in</a>
+                  
+                </div>
+              <% } %>
+
             </div>
           </nav>
           

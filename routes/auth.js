@@ -48,6 +48,11 @@ router.post('/login',
         try {
             const {username,password} = req.body
             const user = await User.findOne({username:username})
+            if (user == null) {
+                console.log("User not found. Please try again.")
+                res.redirect('/login')
+                return
+            }
             const isMatch = await bcrypt.compare(password,user.password);
             if (isMatch) {
                 req.session.username = username
@@ -56,7 +61,7 @@ router.post('/login',
             } else {
                 req.session.username = null
                 req.session.user = null
-                console.log("Username/Password is not correct. Please try again.")
+                console.log("Username/Password do not match. Please try again.")
                 res.redirect('/login')
             }
         } catch(e) {

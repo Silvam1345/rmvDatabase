@@ -3,68 +3,68 @@
       alert("Client has been added successfully!");
     }
   </script> 
-  <body>
+  <body style="text-align: center;">
     <h1 style="text-align: center; margin: 1em;">Add a Client</h1>
     <hr>
-    <a class="btn btn-secondary" href="/rmvdb">Back</a>
-    <br>
-    <br>
-    <form method="post" action="/newClient/add">
-        <b>Client Information</b>
+    <div style="text-align: center;">
+      <a class="btn btn-outline-primary" href="/rmvdb">Back</a>
+    </div>
+    <div class="mx-auto" style="align-content: center;">
+      <form method="post" action="/newClient/add">
+        <div style="font-size: large; font-weight: bold; margin-bottom: 2em;">Client Information</div>
+        
+        <div class="info">First Name</div><input class="inputStyle" type="text" name="first_name">
+        <div class="info">Last Name</div><input class="inputStyle" type="text" name="last_name">
+        <div class="info">Street Address</div> <input class="inputStyle" type="text" name="street_address">
+        <div class="info">City</div> <input class="inputStyle" type="text" name="city">
+        <div class="info">State</div> <input class="inputStyle" type="text" name="state" value="MA">
+        <div class="info">Zip Code</div> <input class="inputStyle" type="text" name="zip_code">
         <br><br>
-        First Name: <input type="text" name="first_name"><br><br>
-        Last Name: <input type="text" name="last_name"><br><br>
-        Street Address: <input type="text" name="street_address"><br><br>
-        City: <input type="text" name="city"><br><br>
-        State: <input type="text" name="state" placeholder="ex. MA"><br><br>
-        Zip Code: <input type="text" name="zip_code"><br>
+        <div style="font-size: large; font-weight: bold; margin-bottom: 2em;">Vehicle Information</div>
+        
+        <div class="info">Vehicle Model</div> <input class="inputStyle" type="text" name="vehicle_model" 
+          placeholder="ex. 2009 Honda Civic">
+        <div class="info">Vehicle Cost($)<br>(No commas, if Vehicle is a Gift, put 0)</div>
+          <input class="inputStyle" type="text" name="vehicle_cost" placeholder="ex. 5000">
+        
+        <div class="info">Total Amount Paid ($)</div> <input class="inputStyle"
+        type="text" name="amnt_paid">
         <br><br>
-        <b>Vehicle Information</b>
-        <br>
-        <br>
-        Vehicle Model: <input type="text" name="vehicle_model" 
-        placeholder="ex. 2009 Honda Civic"><br><br>
-        Vehicle Cost($)
-        <br>
-        (If Vehicle is a Gift, put 0): <input type="text" name="vehicle_cost" placeholder="ex. 5000"><br>
-        <br>
-        Total Amount Paid by Client ($): <input 
-        type="text" name="amnt_paid"><br>
-        <br><br>
-        <b>Service Information</b>
-        <br><br>
-        Type of Service:
-        <select name="type_of_service">
+        <div style="font-size: large; font-weight: bold; margin-bottom: 2em;">Service Information</div>
+        
+        <div class="info">Service Type</div>
+        <select class="inputStyle" name="type_of_service">
             <option value="" selected disabled hidden>Choose one</option>
             <option value="Register Vehicle">Register Vehicle</option>
             <option value="Renew Registration">Renew Registration</option>
             <option value="Reinstate Registration"> Reinstate Registration</option>
             <option value="Cancel Registration">Cancel Registration</option>
-        </select><br><br>
-        Office Service Cost ($): <input type="text" name="office_service_cost" value="100"><br><br>
-        Payment Type: 
-        <select name="payment_type">
+        </select>
+        <div class="info">Office Service Fee ($)</div>
+        <input class="inputStyle" type="text" name="office_service_cost" value="100">
+        <div class="info">Payment Type</div>
+        <select class="inputStyle" name="payment_type">
           <option value="" selected disabled hidden>Choose one</option>
           <option value="Standard">Standard</option>
           <option value="Gift">Gift</option>
-      </select><br><br>
-        Date first received on: <input type="date" name="date_documents_received" 
-        value = "2023-01-01" min="2020-01-01" max="2030-12-31" required><br><br>
-        Date of Completion<br>
-        (If not completed, use current date): <input type="date" name="date_of_service_completion" 
-        value = "2023-01-01" min="2020-01-01" max="2030-12-31" required><br><br>
-        Service Status:
-        <select name="service_status">
+      </select>
+      <div class="info">Received On</div><input class="inputStyle" type="date" name="date_documents_received" 
+        value = "2023-01-01" min="2020-01-01" max="2030-12-31" required>
+        <div class="info">Completed On<br>(If not completed, use current date)</div>
+        <input class="inputStyle" type="date" name="date_of_service_completion" 
+        value = "2023-01-01" min="2020-01-01" max="2030-12-31" required>
+        <div class="info">Service Status</div>
+        <select class="inputStyle" name="service_status">
           <option value="" selected disabled hidden>Choose one</option>
           <option value="Pending Approval">Pending Approval</option>
           <option value="In Progress">In Progress</option>
           <option value="Completed"> Completed</option>
           <option value="Cancelled">Cancelled</option>
-        </select><br><br>
-        Servicer: <input type="text" name="servicer"><br><br>
-        Issues/Missing Documents: <input type="text" name="missing_docs"><br><br>
-        Payment to Servicer ($):  <input type="text" name="payment_received" value="80"><br>
-        <br>
-        <input class="btn btn-primary" type="submit" value="Save Client" onclick="notifyUser()"><br>
-    </form>
+        </select>
+        <div class="info">Servicer</div><input class="inputStyle" type="text" name="servicer">
+        <div class="info">Issues/Missing Documents</div><input class="inputStyle" type="text" name="missing_docs">
+        <div class="info">Payment to Servicer ($)</div><input class="inputStyle" type="text" name="payment_received" value="80"><br>
+        <input class="btn btn-primary" type="submit" value="Save Client" onclick="notifyUser()">
+      </form>
+    </div>
   </body>
